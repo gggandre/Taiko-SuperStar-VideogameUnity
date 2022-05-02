@@ -1,0 +1,28 @@
+<?php
+
+/*Authors Diego Alejandro Balderas Tlahuitzo - A01745336
+Gilberto André García Gaytán - A01753176
+Paula Sophia Santoyo Arteaga - A01745312
+Ricardo Ramirez Condado - A01379299
+Paola Danae López Pérez- A01745689*/
+
+/*This script receives the data to save for the time and the score*/
+
+requiere ("conection.php");
+//information is received
+$IDJugador = $_POST["IDJugador"];
+$IDNivel = $_POST["IDNivel"];
+$FechaInicio = $_POST["FechaInicio"];
+$FechaFinal = $_POST["FechaFinal"];
+$Puntaje = $_POST["Puntaje"];
+$Superado = $_POST["Superado"];
+
+//Query to insert information
+
+$sql = 
+$sql =
+$stmt = $pdo->prepare($sql);
+$stmt-> execute([$IDJugador, $IDNivel]);
+
+
+>?
