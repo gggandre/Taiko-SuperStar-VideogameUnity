@@ -1,7 +1,7 @@
 /*Authors:
  * Diego Alejandro Balderas Tlahuitzo - A01745336
    Gilberto André García Gaytán - A01753176
-   Paula Sophia Santoyo Arteaga - A01745312
+   Paula Sophai Santoyo Arteaga - A01745312
    Ricardo Ramírez Condado - A01379299
    Paola Danae López Pérez- A01745689
 */
@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Networking;
 public class GameManagerJapan : MonoBehaviour
 {
     //First we declare all the components and variables that we will use in the code
@@ -20,6 +21,7 @@ public class GameManagerJapan : MonoBehaviour
     public static GameManagerJapan instance;
     public int points = 0;
     public bool isGameOver = false;
+    private int passLevel;
     public GameObject GameOverPanel;
 
     public SpriteRenderer[] instruments;
@@ -167,6 +169,8 @@ public class GameManagerJapan : MonoBehaviour
                     incorrect.Play();
                     gameActive = false;
                     LevelFinishedPanel.SetActive(true);
+                    passLevel = 1;
+                    SendData();
                 }
                 else
                 {//if the player hasn't the minimun points the player will see the Game Over Panel
@@ -174,9 +178,37 @@ public class GameManagerJapan : MonoBehaviour
                     incorrect.Play();
                     gameActive = false;
                     GameOverPanel.SetActive(true);
+                    passLevel = 0;
+                    SendData();
                 }
             }
 
         }
     }
+
+
+    public void SendData()
+    {
+        StartCoroutine(submitData());
+    }
+
+    private IEnumerator submitData()
+    {
+        string user = NetworkManager.instance.username.text;
+        int IDlevel = 2;
+        int score = points;
+        int pass = passLevel;
+
+        Debug.Log("sent info");
+
+        WWWForm form = new WWWForm();
+        form.AddField("Username", user);
+        form.AddField("IDNivel", IDlevel);
+        form.AddField("Puntaje", score);
+        form.AddField("Superado", pass);
+
+        UnityWebRequest request = UnityWebRequest.Post("http://www.taikosuperstar.com/php_code/recibe_data.php", form);
+        yield return request.SendWebRequest();
+    }
+
 }

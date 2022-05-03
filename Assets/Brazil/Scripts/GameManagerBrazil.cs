@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Networking;
 public class GameManagerBrazil : MonoBehaviour
 {
     //First we declare all the components and variables that we will use in the code
@@ -20,6 +21,7 @@ public class GameManagerBrazil : MonoBehaviour
     public static GameManagerBrazil instance;
     public int points = 0;
     public bool isGameOver = false;
+    private int passLevel;
     public GameObject GameOverPanel;
 
     public SpriteRenderer[] instruments;
@@ -57,7 +59,7 @@ public class GameManagerBrazil : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(shouldBeLit)
+        if (shouldBeLit)
         {
             stayLitCounter -= Time.deltaTime;
             if (stayLitCounter < 0)
@@ -75,8 +77,8 @@ public class GameManagerBrazil : MonoBehaviour
         if (shouldBeDark)
         {
             waitBetweenCounter -= Time.deltaTime;
-            
-            if(positionInSequence >= activeSequence.Count)
+
+            if (positionInSequence >= activeSequence.Count)
             {
                 shouldBeDark = false;
                 gameActive = true;
@@ -98,7 +100,7 @@ public class GameManagerBrazil : MonoBehaviour
     }
 
     public void StartGame() //This Function starts the game 
-    {   
+    {
         //First we clean the sequence and update the number of points to zero.  This action allows to reset the game whe the player presses the buttom and allows the player play from the beginning
         activeSequence.Clear();
         points = 0;
@@ -117,7 +119,7 @@ public class GameManagerBrazil : MonoBehaviour
         //Then the instrument(s) that are include in the sequence increas the hue of their colors and play their sound
         instruments[activeSequence[positionInSequence]].color = new Color(instruments[activeSequence[positionInSequence]].color.r, instruments[activeSequence[positionInSequence]].color.g, instruments[activeSequence[positionInSequence]].color.b, 1f);
         buttonSounds[activeSequence[positionInSequence]].Play();
-        
+
         //Finally the game update the number of instruments that are include in the sequence and indicates the lights were on
         stayLitCounter = stayLit;
         shouldBeLit = true;
@@ -140,7 +142,7 @@ public class GameManagerBrazil : MonoBehaviour
                 inputInSequence++;
 
                 //if there are more or equal numbers of inputs and instruments into the sequence, the game adds a new one, using the same method as in the fucntion "Start game"
-                if(inputInSequence >= activeSequence.Count)
+                if (inputInSequence >= activeSequence.Count)
                 {
                     positionInSequence = 0;
                     inputInSequence = 0;
@@ -167,6 +169,8 @@ public class GameManagerBrazil : MonoBehaviour
                     incorrect.Play();
                     gameActive = false;
                     LevelFinishedPanel.SetActive(true);
+                    passLevel = 1;
+                    SendData();
                 }
                 else
                 {//if the player hasn't the minimun points the player will see the Game Over Panel
@@ -174,9 +178,37 @@ public class GameManagerBrazil : MonoBehaviour
                     incorrect.Play();
                     gameActive = false;
                     GameOverPanel.SetActive(true);
+                    passLevel = 0;
+                    SendData();
                 }
             }
 
         }
     }
+
+
+    public void SendData()
+    {
+        StartCoroutine(submitData());
+    }
+
+    private IEnumerator submitData()
+    {
+        string user = NetworkManager.instance.username.text;
+        int IDlevel = 3;
+        int score = points;
+        int pass = passLevel;
+
+        Debug.Log("Mande la info");
+
+        WWWForm form = new WWWForm();
+        form.AddField("Username", user);
+        form.AddField("IDNivel", IDlevel);
+        form.AddField("Puntaje", score);
+        form.AddField("Superado", pass);
+
+        UnityWebRequest request = UnityWebRequest.Post("http://www.taikosuperstar.com/php_code/recibe_data.php", form);
+        yield return request.SendWebRequest();
+    }
+
 }

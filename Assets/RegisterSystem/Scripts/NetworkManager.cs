@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using TMPro;
 
 
 /*Authors Diego Alejandro Balderas Tlahuitzo - A01745336
@@ -19,6 +20,16 @@ public class NetworkManager : MonoBehaviour
     public string RegisterHostUrl = "http://www.taikosuperstar.com/php_code/register.php";
     public string LoginHostUrl = "http://www.taikosuperstar.com/php_code/checkUser.php";
     public Text m_SendText;
+
+    public Text username;
+
+    public static NetworkManager instance;
+
+    private void Awake()
+    {
+        //We define that the instance references means this instance (the script)
+        instance = this;
+    }
 
 
     //The coroutine is created to be able to detect if you need to register
@@ -81,6 +92,6 @@ public class NetworkManager : MonoBehaviour
 [System.Serializable]
 public class Response
 {
-    public bool       done = false;
-    public string     message = "";
+    public bool done = false;
+    public string message = "";
 }

@@ -13,7 +13,7 @@ Paola Danae López Pérez- A01745689*/
 public class OpenURLStats : MonoBehaviour
 {
 
-    public string URL = "www.youtube.com"; //put the link where you want it to open
+    public string URL = "https://public.tableau.com/app/profile/andre.garc.a.gayt.n/viz/TaikoFinal_16515369416300/DashboardHighscoreperlevel#1"; //put the link where you want it to open
 
     public void OpenPage()
     {

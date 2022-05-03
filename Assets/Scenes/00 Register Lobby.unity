@@ -592,6 +592,7 @@ MonoBehaviour:
   RegisterHostUrl: http://www.taikosuperstar.com/php_code/register.php
   LoginHostUrl: http://www.taikosuperstar.com/php_code/checkUser.php
   m_SendText: {fileID: 585100361}
+  username: {fileID: 988574031}
 --- !u!1 &574534115
 GameObject:
   m_ObjectHideFlags: 0

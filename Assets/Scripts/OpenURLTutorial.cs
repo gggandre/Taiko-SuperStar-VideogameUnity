@@ -13,7 +13,7 @@ Paola Danae López Pérez- A01745689*/
 public class OpenURLTutorial : MonoBehaviour
 {
 
-    public string URL = "www.youtube.com"; //put the link where you want it to open
+    public string URL = "https://drive.google.com/drive/folders/1qtiEQpN0x90bgg-Ge4pLomHU0JY7XSYu?usp=sharing"; //put the link where you want it to open
 
     public void OpenPage()
     {
