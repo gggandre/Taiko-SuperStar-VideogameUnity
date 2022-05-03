@@ -29,4 +29,5 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/06 Credits.unity
     guid: dc8283bb5842d4c48931a291e3e2dfb8
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 96b8289a7a4201040be78798f359c392, type: 2}

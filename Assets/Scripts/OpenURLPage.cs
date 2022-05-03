@@ -13,7 +13,7 @@ Paola Danae López Pérez- A01745689*/
 public class OpenURLPage : MonoBehaviour
 {
 
-    public string URL = "https://www.pas.org/"; //put the link where you want it to open
+    public string URL = "http://www.taikosuperstar.com/login"; //put the link where you want it to open
 
     public void OpenRegister()
     {

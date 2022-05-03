@@ -163,13 +163,13 @@ public class GameManagerJapan : MonoBehaviour
             else //if the number of the instrument that the player presseses is not the same as the number of the instrument in the sequence the player lose the game
             {
                 //The game check if the player has the minimun points that he needs, in this case 500, if the player has the minimun points the player will see the level finished panel
-                if (points >= 500)
+                if (points >= 250)
                 {
                     Debug.Log("Wrong");
                     incorrect.Play();
                     gameActive = false;
                     LevelFinishedPanel.SetActive(true);
-                    passLevel = 1;
+                    passLevel = 2;
                     SendData();
                 }
                 else
