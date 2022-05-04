@@ -207,7 +207,7 @@ public class GameManagerCuba : MonoBehaviour
         form.AddField("Puntaje", score);
         form.AddField("Superado", pass);
 
-        UnityWebRequest request = UnityWebRequest.Post("http://www.taikosuperstar.com/php_code/recibe_data.php", form);
+        UnityWebRequest request = UnityWebRequest.Post("https://libertadsincolitis.com/php_code/recibe_data.php", form);
         yield return request.SendWebRequest();
     }
 

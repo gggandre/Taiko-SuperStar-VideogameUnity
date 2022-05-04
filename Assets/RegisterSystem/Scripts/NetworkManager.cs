@@ -17,8 +17,8 @@ Paola Danae López Pérez- A01745689*/
 public class NetworkManager : MonoBehaviour
 {
     //Here the variables are placed to put the links to the php of the database
-    public string RegisterHostUrl = "http://www.taikosuperstar.com/php_code/register.php";
-    public string LoginHostUrl = "http://www.taikosuperstar.com/php_code/checkUser.php";
+    public string RegisterHostUrl = "https://libertadsincolitis.com/php_code/register.php";
+    public string LoginHostUrl = "https://libertadsincolitis.com/php_code/chechUser.php";
     public Text m_SendText;
 
     public Text username;
