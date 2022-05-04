@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fde277d78224100498933aaac2c0738a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  URL: https://public.tableau.com/app/profile/andre.garc.a.gayt.n/viz/TaikoFinal_16515369416300/DashboardHighscoreperlevel#1
+  URL: https://public.tableau.com/app/profile/andre.garc.a.gayt.n3015/viz/TaikoFinal/DashboardHighscoreperlevel?publish=yes
 --- !u!4 &11094496
 Transform:
   m_ObjectHideFlags: 0
